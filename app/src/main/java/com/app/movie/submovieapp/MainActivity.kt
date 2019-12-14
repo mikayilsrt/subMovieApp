@@ -3,10 +3,13 @@ package com.app.movie.submovieapp
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
+import com.app.movie.submovieapp.models.Movie
 import com.app.movie.submovieapp.services.MovieService
 import com.app.movie.submovieapp.services.RetrofitHolder.retrofit
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.await
@@ -17,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val movies = ArrayList<Movie>()
         val serviceMovie : MovieService = retrofit.create(MovieService::class.java)
 
         serviceMovie.getMovieById("500").also {
@@ -26,6 +30,19 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        serviceMovie.getPopularMovies().also {
+            GlobalScope.launch {
+                it.await().also {
+                    for (movie in it) {
+                        Log.d("debug", "Titre : ${movie.title}")
+                        movies.add(movie)
+                    }
+                }
+            }
+        }
+
+        _listView.adapter = ArrayAdapter(this, R.layout.row, movies)
     }
 
     /**

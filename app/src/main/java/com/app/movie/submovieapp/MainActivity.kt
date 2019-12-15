@@ -12,6 +12,9 @@ import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.await
 
 class MainActivity : AppCompatActivity() {
@@ -31,16 +34,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        serviceMovie.getPopularMovies().also {
-            GlobalScope.launch {
-                it.await().also {
-                    for (movie in it) {
-                        Log.d("debug", "Titre : ${movie.title}")
-                        movies.add(movie)
-                    }
-                }
+        serviceMovie.getPopularMovies().enqueue(object : Callback<List<Movie>> {
+            override fun onFailure(call: Call<List<Movie>>, t: Throwable) { Log.d("debug", "Load failed") }
+
+            override fun onResponse(call: Call<List<Movie>>, response: Response<List<Movie>>) {
+                Log.d("debug", "response : ${response.raw()}")
             }
-        }
+
+        })
 
         _listView.adapter = ArrayAdapter(this, R.layout.row, movies)
     }

@@ -1,8 +1,9 @@
 package com.app.movie.submovieapp
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.GridLayoutManager
 import com.app.movie.submovieapp.adapter.MovieAdapter
 import com.app.movie.submovieapp.models.Movie
 import com.app.movie.submovieapp.services.MovieService
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 it.await().results.also {
                     withContext(Dispatchers.Main) {
+                        //_listView.layoutManager = GridLayoutManager(context, 2)
                         val movieAdapter = MovieAdapter(it)
                         _listView.adapter = movieAdapter
                     }

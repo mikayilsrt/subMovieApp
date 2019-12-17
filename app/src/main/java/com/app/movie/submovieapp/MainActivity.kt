@@ -3,18 +3,17 @@ package com.app.movie.submovieapp
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
+import com.app.movie.submovieapp.adapter.MovieAdapter
 import com.app.movie.submovieapp.models.Movie
 import com.app.movie.submovieapp.services.MovieService
 import com.app.movie.submovieapp.services.RetrofitHolder.retrofit
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.withContext
 import retrofit2.await
 
 class MainActivity : AppCompatActivity() {
@@ -34,16 +33,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        serviceMovie.getPopularMovies().enqueue(object : Callback<List<Movie>> {
-            override fun onFailure(call: Call<List<Movie>>, t: Throwable) { Log.d("debug", "Load failed") }
-
-            override fun onResponse(call: Call<List<Movie>>, response: Response<List<Movie>>) {
-                Log.d("debug", "response : ${response.raw()}")
+        serviceMovie.getPopularMovies().also {
+            GlobalScope.launch {
+                it.await().results.also {
+                    withContext(Dispatchers.Main) {
+                        val movieAdapter = MovieAdapter(it)
+                        _listView.adapter = movieAdapter
+                    }
+                }
             }
-
-        })
-
-        _listView.adapter = ArrayAdapter(this, R.layout.row, movies)
+        }
     }
 
     /**

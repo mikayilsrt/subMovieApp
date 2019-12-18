@@ -11,10 +11,7 @@ import com.app.movie.submovieapp.services.RetrofitHolder.retrofit
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import retrofit2.await
 
 class MainActivity : AppCompatActivity() {
@@ -38,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 it.await().results.also {
                     withContext(Dispatchers.Main) {
-                        //_listView.layoutManager = GridLayoutManager(context, 2)
+                        _listView.layoutManager = GridLayoutManager(baseContext, 2)
                         val movieAdapter = MovieAdapter(it)
                         _listView.adapter = movieAdapter
                     }

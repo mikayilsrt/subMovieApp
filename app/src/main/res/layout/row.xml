@@ -2,15 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="17dp"
-    android:layout_marginVertical="20dp"
+    android:paddingHorizontal="7dp"
+    android:paddingVertical="7dp"
     >
 
-    <TextView
-        android:id="@+id/_singleTitle"
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/_movie_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Single Item"
+        android:layout_height="180dp"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp"
+        android:background="#1C1D24"
+        >
+
+        <TextView
+            android:id="@+id/_singleTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Single Item"
+            android:textColor="#ffff"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.app.movie.submovieapp.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,10 @@ class MovieAdapter(
     inner class ViewHolder(private val view : View) : RecyclerView.ViewHolder(view) {
 
         fun bind(movie : Movie) {
+            val uri = Uri.parse("https://image.tmdb.org/t/p/w500/" + movie.backdrop_path)
+
             view._singleTitle.text = movie.title
+            view._movie_image.setImageURI(uri)
         }
 
     }

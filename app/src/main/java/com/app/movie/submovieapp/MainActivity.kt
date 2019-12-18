@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         Fresco.initialize(this)
         setContentView(R.layout.activity_main)
 
-        val movies = ArrayList<Movie>()
         val serviceMovie : MovieService = retrofit.create(MovieService::class.java)
 
         serviceMovie.getMovieById("500").also {

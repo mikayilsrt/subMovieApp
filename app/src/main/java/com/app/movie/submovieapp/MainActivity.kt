@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         serviceMovie.getMovieById("500").also {
             GlobalScope.launch {
-                it.await().also {
+                it.await().results.also {
                     Log.d("debug", "Titre : ${it.title}")
                 }
             }

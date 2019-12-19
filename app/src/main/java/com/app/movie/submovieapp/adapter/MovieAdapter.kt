@@ -33,8 +33,31 @@ class MovieAdapter(
             val uri = Uri.parse("https://image.tmdb.org/t/p/w500/" + movie.backdrop_path)
 
             view._singleTitle.text = movie.title
-            view._movie_image.setImageURI(uri)
+            view._movie_image.setImageURI(uri, null)
+
+            isFavorite(movie, view)
+
+            view._favoriteButton.setOnClickListener {
+                movie.isFavorite = !movie.isFavorite
+
+                bind(movie)
+            }
         }
 
+    }
+
+    /**
+     * Change Favorite icon state
+     *
+     * @param Movie movie
+     *
+     * @param View view
+     */
+    private fun isFavorite(movie : Movie, view : View) {
+        if (movie.isFavorite) {
+            view._favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp)
+        } else {
+            view._favoriteButton.setImageResource(R.drawable.ic_favorite_border_black_24dp)
+        }
     }
 }

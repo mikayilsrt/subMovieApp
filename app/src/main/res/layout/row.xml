@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingHorizontal="7dp"
-    android:paddingVertical="7dp"
-    >
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="7dp"
+        android:paddingVertical="7dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/_movie_image"
         android:layout_width="match_parent"
         android:layout_height="180dp"
+        fresco:placeholderImage="@drawable/ic_image_black_24dp"
         />
 
     <LinearLayout
@@ -18,15 +20,24 @@
         android:paddingHorizontal="14dp"
         android:paddingVertical="10dp"
         android:background="#1C1D24"
+        android:orientation="horizontal"
         >
 
         <TextView
             android:id="@+id/_singleTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Single Item"
+            android:text=""
+            android:layout_weight="1"
             android:textColor="#ffff"
             />
+
+        <ImageButton
+            android:id="@+id/_favoriteButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="#00000000"
+            android:src="@drawable/ic_favorite_border_black_24dp" />
 
     </LinearLayout>
 

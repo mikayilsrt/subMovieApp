@@ -10,4 +10,5 @@ open class Movie : RealmObject() {
     var backdrop_path : String? = null
     var poster_path : String? = null
     var genres : RealmList<Genre>? = null
+    var isFavorite : Boolean = false
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.movie.submovieapp.R
 import com.app.movie.submovieapp.models.Movie
+import com.vicpin.krealmextensions.save
 import kotlinx.android.synthetic.main.row.view.*
 
 class MovieAdapter(
@@ -39,6 +40,7 @@ class MovieAdapter(
 
             view._favoriteButton.setOnClickListener {
                 movie.isFavorite = !movie.isFavorite
+                movie.save()
 
                 bind(movie)
             }

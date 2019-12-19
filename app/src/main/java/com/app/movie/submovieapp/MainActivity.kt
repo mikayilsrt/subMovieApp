@@ -2,7 +2,6 @@ package com.app.movie.submovieapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.movie.submovieapp.adapter.MovieAdapter
 import com.app.movie.submovieapp.services.MovieService
@@ -22,14 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val serviceMovie : MovieService = retrofit.create(MovieService::class.java)
-
-        serviceMovie.getMovieById("500").also {
-            GlobalScope.launch {
-                it.await().results.also {
-                    Log.d("debug", "Titre : ${it.title}")
-                }
-            }
-        }
 
         serviceMovie.getPopularMovies().also {
             GlobalScope.launch {

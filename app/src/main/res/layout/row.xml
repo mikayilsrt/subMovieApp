@@ -5,7 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="7dp"
-        android:paddingVertical="7dp">
+        android:paddingVertical="7dp"
+        android:id="@+id/_movie_row_layout">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/_movie_image"

@@ -1,5 +1,6 @@
 package com.app.movie.submovieapp.adapter
 
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.movie.submovieapp.R
 import com.app.movie.submovieapp.models.Movie
+import com.app.movie.submovieapp.views.MovieDetails
 import com.vicpin.krealmextensions.save
 import kotlinx.android.synthetic.main.row.view.*
 
@@ -43,6 +45,10 @@ class MovieAdapter(
                 movie.save()
 
                 bind(movie)
+            }
+
+            view._movie_row_layout.setOnClickListener {
+                MovieDetails.start(it.context, movie.id)
             }
         }
 

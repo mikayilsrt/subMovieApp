@@ -1,12 +1,15 @@
 package com.app.movie.submovieapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.movie.submovieapp.adapter.MovieAdapter
 import com.app.movie.submovieapp.services.MovieService
 import com.app.movie.submovieapp.services.RetrofitHolder.retrofit
+import com.app.movie.submovieapp.views.SearchActivity
 import com.facebook.drawee.backends.pipeline.Fresco
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
@@ -36,8 +39,36 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Specify options menu for main activity
+     *
+     * @return Boolean
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_search_movie, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    /**
+     * Select menu item
+     *
+     * @return Boolean
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id._search_menu_button -> {
+                startSearchActivity()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    /**
+     * Start search activity
+     */
+    private fun startSearchActivity() {
+        val intent = Intent(this, SearchActivity::class.java)
+        startActivity(intent)
     }
 }

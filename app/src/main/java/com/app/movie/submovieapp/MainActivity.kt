@@ -2,6 +2,7 @@ package com.app.movie.submovieapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.movie.submovieapp.adapter.MovieAdapter
 import com.app.movie.submovieapp.services.MovieService
@@ -33,5 +34,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_search_movie, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }

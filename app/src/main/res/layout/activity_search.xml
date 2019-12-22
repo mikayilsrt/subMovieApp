@@ -13,6 +13,7 @@
             android:paddingHorizontal="17dp">
 
         <EditText
+            android:id="@+id/_search_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shadows"
@@ -21,9 +22,10 @@
             android:height="45dp"
             android:hint="Search..." />
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:id="@+id/_searchListView" />
 
     </LinearLayout>
 

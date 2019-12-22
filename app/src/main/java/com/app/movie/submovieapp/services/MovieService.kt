@@ -18,4 +18,11 @@ interface MovieService {
         @Query("api_key") apiKey: String = "66ee102c15b779b77afde5b5948b26c4"
     ) : Call<MovieResults>
 
+    @GET("search/movie")
+    fun getMoviesFromQuery(
+        @Query("query") query: String,
+        @Query("page") page: Int = 1,
+        @Query("api_key") apiKey: String = "66ee102c15b779b77afde5b5948b26c4"
+    ) : Call<MovieResults>
+
 }

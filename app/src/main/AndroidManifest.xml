@@ -18,8 +18,8 @@
                 android:resource="@menu/menu_search_movie" />
         <activity
             android:name=".views.MovieDetails"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+            android:parentActivityName=".views.MainActivity" />
+        <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

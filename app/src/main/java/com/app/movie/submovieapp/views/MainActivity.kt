@@ -1,4 +1,4 @@
-package com.app.movie.submovieapp
+package com.app.movie.submovieapp.views
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.GridLayoutManager
+import com.app.movie.submovieapp.R
 import com.app.movie.submovieapp.adapter.MovieAdapter
 import com.app.movie.submovieapp.services.MovieService
 import com.app.movie.submovieapp.services.RetrofitHolder.retrofit
-import com.app.movie.submovieapp.views.SearchActivity
 import com.facebook.drawee.backends.pipeline.Fresco
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*

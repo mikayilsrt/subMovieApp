@@ -16,8 +16,9 @@
         <meta-data
                 android:name="com.google.android.actions"
                 android:resource="@menu/menu_search_movie" />
-
-        <activity android:name=".views.MovieDetails" />
+        <activity
+            android:name=".views.MovieDetails"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

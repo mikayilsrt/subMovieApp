@@ -36,6 +36,7 @@ class MovieDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
 
         val serviceMovie : MovieService = retrofit.create(MovieService::class.java)
 

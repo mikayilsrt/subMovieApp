@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
      * @return Boolean
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_favorites_movie, menu)
         menuInflater.inflate(R.menu.menu_search_movie, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -60,6 +61,10 @@ class MainActivity : AppCompatActivity() {
                 startSearchActivity()
                 true
             }
+            R.id._favorite_menu_button -> {
+                startFavoritesActivity()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -69,6 +74,14 @@ class MainActivity : AppCompatActivity() {
      */
     private fun startSearchActivity() {
         val intent = Intent(this, SearchActivity::class.java)
+        startActivity(intent)
+    }
+
+    /**
+     * Start favorite activity
+     */
+    private fun startFavoritesActivity() {
+        val intent = Intent(this, FavoritesActivity::class.java)
         startActivity(intent)
     }
 }

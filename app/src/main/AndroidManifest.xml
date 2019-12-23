@@ -11,14 +11,18 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".views.SearchActivity"></activity>
+        <activity
+            android:parentActivityName=".views.MainActivity"
+            android:name=".views.FavoritesActivity"></activity>
+        <activity android:name=".views.SearchActivity" />
 
         <meta-data
                 android:name="com.google.android.actions"
                 android:resource="@menu/menu_search_movie" />
+
         <activity
-            android:name=".views.MovieDetails"
-            android:parentActivityName=".views.MainActivity" />
+                android:name=".views.MovieDetails"
+                android:parentActivityName=".views.MainActivity" />
         <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

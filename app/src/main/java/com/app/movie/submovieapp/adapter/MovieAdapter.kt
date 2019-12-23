@@ -62,9 +62,9 @@ class MovieAdapter(
      */
     private fun isFavorite(movie : Movie, view : View) {
         if (movie.isFavorite) {
-            view._favoriteButton.setImageResource(R.drawable.ic_favorite_black_24dp)
+            view._favoriteButton.setImageResource(R.drawable.ic_favorite_white_24dp)
         } else {
-            view._favoriteButton.setImageResource(R.drawable.ic_favorite_border_black_24dp)
+            view._favoriteButton.setImageResource(R.drawable.ic_favorite_border_white_24dp)
         }
     }
 }

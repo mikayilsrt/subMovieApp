@@ -21,6 +21,7 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
 
         _search_input.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(string: Editable?) {
@@ -31,6 +32,11 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
         })
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
     /**

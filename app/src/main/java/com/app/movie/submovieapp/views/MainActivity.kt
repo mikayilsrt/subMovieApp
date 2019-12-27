@@ -1,8 +1,11 @@
 package com.app.movie.submovieapp.views
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.GridLayoutManager
@@ -24,15 +27,17 @@ class MainActivity : AppCompatActivity() {
         Fresco.initialize(this)
         setContentView(R.layout.activity_main)
 
-        val serviceMovie : MovieService = retrofit.create(MovieService::class.java)
+        if (this.checkNetworkConnexion()) {
+            val serviceMovie : MovieService = retrofit.create(MovieService::class.java)
 
-        serviceMovie.getPopularMovies().also {
-            GlobalScope.launch {
-                it.await().results.also {
-                    withContext(Dispatchers.Main) {
-                        _listView.layoutManager = GridLayoutManager(baseContext, 2)
-                        val movieAdapter = MovieAdapter(it)
-                        _listView.adapter = movieAdapter
+            serviceMovie.getPopularMovies().also {
+                GlobalScope.launch {
+                    it.await().results.also {
+                        withContext(Dispatchers.Main) {
+                            _listView.layoutManager = GridLayoutManager(baseContext, 2)
+                            val movieAdapter = MovieAdapter(it)
+                            _listView.adapter = movieAdapter
+                        }
                     }
                 }
             }
@@ -67,6 +72,19 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    /**
+     * Check if mobile connexion or wifi is disabled or not
+     *
+     * @return Boolean
+     */
+    private fun checkNetworkConnexion() : Boolean {
+        val connManager : ConnectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val wifiConn = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+        val mobileDataConn = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+
+        return wifiConn.isConnectedOrConnecting || mobileDataConn.isConnectedOrConnecting
     }
 
     /**

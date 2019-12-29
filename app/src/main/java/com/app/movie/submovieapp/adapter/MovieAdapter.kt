@@ -4,6 +4,8 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.app.movie.submovieapp.R
 import com.app.movie.submovieapp.models.Movie
@@ -32,8 +34,10 @@ class MovieAdapter(
     inner class ViewHolder(private val view : View) : RecyclerView.ViewHolder(view) {
 
         fun bind(movie : Movie) {
+            val fromBottom : Animation = AnimationUtils.loadAnimation(view.context, R.anim.frombottom)
             val uri = Uri.parse("https://image.tmdb.org/t/p/w500/" + movie.backdrop_path)
 
+            view.animation = fromBottom
             view._singleTitle.text = movie.title
             view._movie_image.setImageURI(uri, null)
 

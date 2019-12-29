@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.app.movie.submovieapp.R
 import com.app.movie.submovieapp.services.MovieService
 import com.app.movie.submovieapp.services.RetrofitHolder.retrofit
@@ -45,7 +47,10 @@ class MovieDetails : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     if (it == null) finish()
                     it.await().also {
+                        val animation : Animation = AnimationUtils.loadAnimation(baseContext, R.anim.frombottom)
                         val uri = Uri.parse("https://image.tmdb.org/t/p/w500/" + it.poster_path)
+
+                        _details_body.animation = animation
                         _movie_cover.setImageURI(uri, null)
                         _movie_title.text = it.title
                         _movie_overview.text = it.overview

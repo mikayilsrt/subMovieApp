@@ -13,6 +13,7 @@
         />
 
     <LinearLayout
+            android:id="@+id/_details_body"
             android:layout_alignBottom="@+id/_movie_cover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
